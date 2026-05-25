@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>關於作者 · 戴清河｜水利技師 × 幾何愛好者</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
+            padding: 2rem;
+        }
+        .card { max-width: 1000px; margin: 0 auto; background: white; border-radius: 2rem; overflow: hidden; box-shadow: 0 20px 35px -10px rgba(0,0,0,0.2); }
+        .header { background: #1e2a3a; color: white; padding: 2rem; text-align: center; }
+        /* 頭像圖片樣式 */
+        .avatar-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid white;
+            margin-bottom: 1rem;
+        }
+        .avatar-fallback {
+            display: inline-flex;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: #2c7da0;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            border: 3px solid white;
+            margin-bottom: 1rem;
+        }
+        .badge {
+            display: inline-block;
+            background: #2c7da0;
+            padding: 0.2rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+        .content { padding: 2rem; }
+        .lang-section { margin-bottom: 2rem; border-bottom: 1px dashed #cbd5e1; padding-bottom: 1.5rem; }
+        .lang-title { font-size: 1.4rem; font-weight: 600; color: #2c7da0; border-left: 4px solid #2c7da0; padding-left: 0.8rem; margin-bottom: 0.8rem; }
+        .highlight { background: #eef2ff; padding: 0.8rem; border-radius: 0.8rem; margin: 1rem 0; }
+        .nav-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin: 1rem; padding: 0.8rem 0; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0; }
+        .nav-links a { background: #2c7da0; color: white; padding: 0.4rem 1rem; border-radius: 2rem; text-decoration: none; }
+        .nav-links a:hover { background: #1e5a73; }
+        .footer { background: #f8fafc; padding: 1rem; text-align: center; }
+        img.svg-placeholder { max-width: 100%; margin: 0.5rem 0; }
+        p { margin-bottom: 0.8rem; line-height: 1.6; }
+    </style>
+</head>
+<body>
+<div class="card">
+    <div class="header">
+        <!-- 作者照片：嘗試載入 images/0_author.jpg，失敗則顯示文字 fallback -->
+        <img src="images/0_author.jpg" alt="戴清河照片" class="avatar-img"
+             onerror="this.onerror=null; this.style.display='none'; this.insertAdjacentHTML('afterend', '<div class=\"avatar-fallback\">戴</div>');">
+        <h1>戴清河 · C.H. Day (chday169)</h1>
+        <div class="badge">土木及水利工程技師 (退休) | 數學3D製圖 · 水理與邊坡分析</div>
+    </div>
+    <div class="nav-links">
+        <a href="index.html">🏠 回首頁</a>
+        <a href="image_viewer.html">🖼️ 圖片檢視器</a>
+        <a href="pdf_viewer.html">📑 PDF 論文</a>
+        <a href="extended_abstract.html">📄 擴展摘要</a>
+        <a href="hydrology_app.html">💧 水利應用</a>
+        <a href="slope_stability_app.html">⛰️ 邊坡穩定</a>
+    </div>
+    <div class="content">
+        <div class="lang-section">
+            <div class="lang-title">📖 中文 / 繁體</div>
+            <p>🏗️ <strong>土木及水利工程技師</strong>，執業逾三十年，現已退休。<br>
+            ✨ 退休後全心投入：<strong>數學概念分享</strong>、工程實用程式開發，以及 <strong>3D 數學製圖</strong>。</p>
+            <p>我深信 <strong>視覺化即理解</strong>。在 <strong>水資源</strong>領域，我利用隱式曲面重建河道地形與地下水位面，輔助水理計算；在 <strong>邊坡穩定</strong>方面，則透過 Marching Cubes 生成潛在滑動面，結合極限平衡法評估安全係數。</p>
+            <div class="highlight">
+                🌊 水利應用亮點：不規則三角網(TIN) ＋ 隱式曲面 → 即時水理模擬<br>
+                ⛰️ 邊坡應用亮點：地層界面 + 滑動面自動提取 → 快速穩定性分析
+            </div>
+            <p>本倉儲 <strong>MCA-WITHOUT-LOOKUPTABLE-V1</strong> 正是此理念的延伸 — 無查表、純幾何，適合教學與工程前緣研究。</p>
+        </div>
+        <div class="lang-section">
+            <div class="lang-title">🇬🇧 English</div>
+            <p>I am a retired <strong>Civil and Hydraulic Engineering Technician</strong> with decades of field experience. My passion lies in visualizing mathematical concepts — especially for <strong>water resources (hydraulics & hydrology)</strong> and <strong>slope stability (soil/rock mechanics)</strong>. This repository demonstrates a lookup‑free Marching Cubes method and its practical extensions.</p>
+        </div>
+    </div>
+    <div class="footer">📫 歡迎交流水利工程與幾何演算法 | Stay curious, enjoy geometry.</div>
+</div>
+</body>
+</html>

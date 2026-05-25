@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>關於作者 · 戴清河｜MCA_WLTNT Research</title>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
+            padding: 2rem;
+        }
+
+        .card {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 2rem;
+            overflow: hidden;
+            box-shadow: 0 20px 35px -10px rgba(0,0,0,0.2);
+        }
+
+        .header {
+            background: #1e2a3a;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .avatar-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid white;
+            margin-bottom: 1rem;
+        }
+
+        .avatar-fallback {
+            display: inline-flex;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: #2c7da0;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            border: 3px solid white;
+            margin-bottom: 1rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #2c7da0;
+            padding: 0.3rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.9rem;
+            margin-top: 0.6rem;
+        }
+
+        .content {
+            padding: 2rem;
+        }
+
+        .lang-section {
+            margin-bottom: 2rem;
+            border-bottom: 1px dashed #cbd5e1;
+            padding-bottom: 1.5rem;
+        }
+
+        .lang-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #2c7da0;
+            border-left: 4px solid #2c7da0;
+            padding-left: 0.8rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .highlight {
+            background: #eef2ff;
+            padding: 0.9rem;
+            border-radius: 0.8rem;
+            margin: 1rem 0;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 1rem;
+            padding: 0.8rem 0;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .nav-links a {
+            background: #2c7da0;
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 2rem;
+            text-decoration: none;
+        }
+
+        .nav-links a:hover {
+            background: #1e5a73;
+        }
+
+        .footer {
+            background: #f8fafc;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        p {
+            margin-bottom: 0.8rem;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+
+    <div class="header">
+
+        <img src="images/author.jpg"
+             alt="戴清河照片"
+             class="avatar-img"
+             onerror="this.onerror=null;
+                      this.style.display='none';
+                      this.insertAdjacentHTML('afterend',
+                      '<div class=&quot;avatar-fallback&quot;>戴</div>');">
+
+        <h1>戴清河 · C.H. Day (chday169)</h1>
+
+        <div class="badge">
+            MCA_WLTNT Research · Implicit Geometry · GPU Point-based Reconstruction
+        </div>
+
+    </div>
+
+    <div class="nav-links">
+        <a href="index.html">🏠 Home</a>
+        <a href="image_viewer.html">🖼️ Images</a>
+        <a href="pdf_viewer.html">📑 Papers</a>
+        <a href="extended_abstract.html">📄 Abstract</a>
+        <a href="hydrology_app.html">💧 Hydrology</a>
+        <a href="slope_stability_app.html">⛰️ Slope</a>
+    </div>
+
+    <div class="content">
+
+        <div class="lang-section">
+
+            <div class="lang-title">📖 中文 / 繁體</div>
+
+            <p>
+                🏗️ <strong>土木及水利工程技師</strong>（退休），長期從事水利、邊坡與地形分析。
+            </p>
+
+            <p>
+                退休後專注於 <strong>數學可視化</strong>、3D 幾何建模與工程計算方法研究，
+                特別是 <strong>Implicit Geometry（隱式幾何）</strong> 與即時數值模擬。
+            </p>
+
+            <p>
+                本研究核心方向為：
+                <strong>MCA_WLTNT</strong>
+                （Marching Cube Algorithm Without Lookup Table and No Triangle）。
+            </p>
+
+            <div class="highlight">
+                🌊 水利應用：河道重建 · 洪水模擬 · 水面演化<br>
+                ⛰️ 邊坡應用：滑動面偵測 · 地層界面 · 安全係數分析<br>
+                🧠 幾何核心：Implicit Surface → Point Cloud Reconstruction
+            </div>
+
+            <p>
+                方法特點：
+                <strong>不使用 Lookup Table、不建立 Triangle Mesh，
+                直接以 Point Cloud 重建隱式曲面</strong>，
+                適用於即時 GPU 計算與工程應用。
+            </p>
+
+        </div>
+
+        <div class="lang-section">
+
+            <div class="lang-title">🇬🇧 English</div>
+
+            <p>
+                I am a retired <strong>Civil and Hydraulic Engineering Technician</strong>,
+                with decades of experience in hydraulic engineering, slope stability,
+                and terrain modeling.
+            </p>
+
+            <p>
+                My current research focuses on
+                <strong>mathematical visualization</strong>,
+                <strong>implicit geometry</strong>,
+                and <strong>GPU-based point cloud reconstruction</strong>.
+            </p>
+
+            <p>
+                This repository introduces:
+                <strong>MCA_WLTNT</strong>
+                (Marching Cube Algorithm Without Lookup Table and No Triangle),
+                a geometry-first approach to iso-surface reconstruction.
+            </p>
+
+            <div class="highlight">
+                Key idea:<br>
+                Implicit Surface → Edge Sampling → Iso-points → Point Cloud Surface
+            </div>
+
+            <p>
+                The method removes both lookup tables and triangle mesh construction,
+                making it highly suitable for GPU parallel computing,
+                real-time simulation, and AI geometry systems.
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="footer">
+        📫 MCA_WLTNT · Stay curious · Enjoy geometry · GPU Implicit World
+    </div>
+
+</div>
+
+</body>
+</html>

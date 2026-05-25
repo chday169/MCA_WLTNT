@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MCA_WLTNT · Implicit Geometry Viewer</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #0f172a;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 2rem;
+    color: white;
+}
+
+.viewer-container {
+    background: #ffffff;
+    border-radius: 2rem;
+    max-width: 1200px;
+    width: 100%;
+    overflow: hidden;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+}
+
+.header {
+    background: linear-gradient(135deg, #1e3a8a, #0ea5e9);
+    padding: 1.2rem 2rem;
+    text-align: center;
+}
+
+.header h1 {
+    font-size: 1.6rem;
+}
+
+.header p {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    margin-top: 0.3rem;
+}
+
+.image-area {
+    background: #f1f5f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    min-height: 520px;
+}
+
+.image-area img {
+    max-width: 100%;
+    max-height: 70vh;
+    border-radius: 1rem;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    cursor: zoom-in;
+    transition: transform 0.2s;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 1.2rem;
+    padding: 1.2rem;
+    background: #e2e8f0;
+}
+
+button {
+    background: #0ea5e9;
+    border: none;
+    color: white;
+    font-size: 1.1rem;
+    padding: 0.5rem 1.2rem;
+    border-radius: 2rem;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    background: #0369a1;
+}
+
+.thumbnails {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    padding: 1rem;
+    background: white;
+    border-top: 1px solid #cbd5e1;
+}
+
+.thumb {
+    width: 78px;
+    height: 78px;
+    object-fit: cover;
+    border-radius: 0.6rem;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: 0.15s;
+}
+
+.thumb:hover {
+    transform: scale(1.05);
+}
+
+.thumb.active {
+    border-color: #0ea5e9;
+    transform: scale(1.08);
+}
+
+.footer-nav {
+    text-align: center;
+    padding: 1rem;
+    background: #f8fafc;
+    font-size: 0.85rem;
+}
+
+a {
+    color: #0ea5e9;
+    text-decoration: none;
+    margin: 0 0.4rem;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.92);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 1rem;
+}
+
+.modal-close {
+    position: absolute;
+    top: 18px;
+    right: 30px;
+    font-size: 42px;
+    color: white;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="viewer-container">
+
+    <div class="header">
+        <h1>🧊 MCA_WLTNT · Implicit Geometry Viewer</h1>
+        <p>Lookup-table-free · Triangle-free · Point-based Iso-surface Reconstruction</p>
+    </div>
+
+    <div class="image-area">
+        <img id="mainImage" src="images/0_sphere.png" alt="MCA_WLTNT result">
+    </div>
+
+    <div class="controls">
+        <button id="prevBtn">◀ Prev</button>
+        <button id="nextBtn">Next ▶</button>
+    </div>
+
+    <div class="thumbnails">
+
+        <img class="thumb active" data-img="images/0_sphere.png" src="images/0_sphere.png">
+        <img class="thumb" data-img="images/0_hyperboloid.png" src="images/0_hyperboloid.png">
+        <img class="thumb" data-img="images/1_heart.png" src="images/1_heart.png">
+        <img class="thumb" data-img="images/1_sphere.png" src="images/1_sphere.png">
+        <img class="thumb" data-img="images/1_spiraltube.png" src="images/1_spiraltube.png">
+        <img class="thumb" data-img="images/1_star.png" src="images/1_star.png">
+        <img class="thumb" data-img="images/1_wave.png" src="images/1_wave.png">
+        <img class="thumb" data-img="images/2_colors_sphere.png" src="images/2_colors_sphere.png">
+        <img class="thumb" data-img="images/2_ellipsoid.png" src="images/2_ellipsoid.png">
+        <img class="thumb" data-img="images/2_monocolo_sphere.png" src="images/2_monocolo_sphere.png">
+
+    </div>
+
+    <div class="footer-nav">
+        <a href="index.html">🏠 Home</a> |
+        <a href="about_me.html">👤 Author</a> |
+        <a href="extended_abstract.html">📄 Abstract</a> |
+        <a href="hydrology_app.html">💧 Hydrology</a> |
+        <a href="slope_stability_app.html">⛰️ Slope</a>
+    </div>
+
+</div>
+
+<!-- modal -->
+<div id="modal" class="modal">
+    <span class="modal-close">&times;</span>
+    <img id="modalImg">
+</div>
+
+<script>
+
+const images = [
+    "images/0_sphere.png",
+    "images/0_hyperboloid.png",
+    "images/1_heart.png",
+    "images/1_sphere.png",
+    "images/1_spiraltube.png",
+    "images/1_star.png",
+    "images/1_wave.png",
+    "images/2_colors_sphere.png",
+    "images/2_ellipsoid.png",
+    "images/2_monocolo_sphere.png"
+];
+
+let current = 0;
+
+const mainImage = document.getElementById("mainImage");
+const thumbs = document.querySelectorAll(".thumb");
+
+function update(index) {
+
+    current = (index + images.length) % images.length;
+    mainImage.src = images[current];
+
+    thumbs.forEach(t => {
+        t.classList.toggle("active", t.dataset.img === images[current]);
+    });
+}
+
+document.getElementById("prevBtn").onclick = () => update(current - 1);
+document.getElementById("nextBtn").onclick = () => update(current + 1);
+
+thumbs.forEach(t => {
+    t.onclick = () => update(images.indexOf(t.dataset.img));
+});
+
+/* modal */
+const modal = document.getElementById("modal");
+const modalImg = document.getElementById("modalImg");
+
+mainImage.onclick = () => {
+    modal.style.display = "flex";
+    modalImg.src = mainImage.src;
+};
+
+document.querySelector(".modal-close").onclick = () => {
+    modal.style.display = "none";
+};
+
+modal.onclick = (e) => {
+    if (e.target === modal) modal.style.display = "none";
+};
+
+update(0);
+
+</script>
+
+</body>
+</html>

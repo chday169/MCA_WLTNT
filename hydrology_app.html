@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>水資源應用 · MCA_WLTNT 水利與水理模擬</title>
+
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Segoe UI', system-ui;
+    background: #e9f2f5;
+    padding: 2rem;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 2rem;
+    padding: 2rem;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+h1 {
+    color: #0077b6;
+    border-left: 5px solid #0077b6;
+    padding-left: 1rem;
+    margin-bottom: 1rem;
+}
+
+h2 {
+    margin-top: 1.5rem;
+    color: #023e8a;
+}
+
+p {
+    margin: 1rem 0;
+    line-height: 1.6;
+}
+
+.img-box {
+    background: #f8f9fa;
+    border-radius: 1rem;
+    padding: 1rem;
+    margin: 1.5rem 0;
+    text-align: center;
+}
+
+.highlight {
+    background: #caf0f8;
+    padding: 1rem;
+    border-radius: 1rem;
+    margin: 1rem 0;
+}
+
+.footer-nav {
+    margin-top: 2rem;
+    text-align: center;
+    padding-top: 1rem;
+    border-top: 1px solid #ccc;
+}
+
+a {
+    color: #0077b6;
+    text-decoration: none;
+    margin: 0 0.5rem;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.8rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>💧 水資源應用 · MCA_WLTNT 水利與水理模擬</h1>
+
+<p>
+本頁展示 <strong>MCA_WLTNT（Marching Cube Algorithm Without Lookup Table and No Triangle）</strong>
+在水資源工程中的應用，包括河道地形重建、自由水面提取與地下水位面分析。
+</p>
+
+---
+
+<h2>🌊 應用概念</h2>
+
+<p>
+水流場可表示為隱式函數：
+</p>
+
+<p style="text-align:center;">
+<strong>f(x,y,z) = h(x,y) - z</strong>
+</p>
+
+<p>
+其中 h(x,y) 表示水位或水頭高度。  
+MCA_WLTNT 透過 voxel 掃描與邊界符號檢測，直接提取水面 iso-points。
+</p>
+
+---
+
+<h2>📌 核心方法</h2>
+
+<div class="highlight">
+✔ 無 Lookup Table  
+✔ 無 Triangle Mesh  
+✔ 直接生成 Point Cloud 水面  
+✔ GPU 可平行運算  
+</div>
+
+<p>
+與傳統 CFD 或 GIS 方法不同，本方法不需建立拓撲結構，而是直接以幾何方式重建自由水面。
+</p>
+
+---
+
+<h2>📊 工程應用場景</h2>
+
+<div class="highlight">
+
+🌧 洪水模擬（Flood Inundation Modeling）  
+→ LiDAR / DEM → voxel → water surface extraction  
+
+🏞 河道與地形重建  
+→ riverbed implicit surface modeling  
+
+💧 地下水分析  
+→ equipotential surface reconstruction  
+
+🧪 水庫淤積分析  
+→ volume estimation via implicit geometry  
+
+</div>
+
+---
+
+<h2>📐 水理與隱式建模</h2>
+
+<p>
+在水理分析中，流場可透過隱式幾何表示：
+</p>
+
+<p style="text-align:center;">
+f(x,y,z) = h(x,y) - z
+</p>
+
+<p>
+當 f(x,y,z)=0 時，即為自由水面。
+MCA_WLTNT 可直接從 voxel 網格中提取此等值面。
+</p>
+
+---
+
+<h2>🧠 方法優勢</h2>
+
+<ul>
+<li>避免傳統 GIS mesh reconstruction 複雜性</li>
+<li>適合 real-time flood simulation</li>
+<li>支援 GPU parallel voxel computation</li>
+<li>自然整合 Digital Twin 水理系統</li>
+</ul>
+
+---
+
+<h2>🖼 示意圖</h2>
+
+<div class="img-box">
+<img src="images/water_flow.png" alt="Water flow simulation">
+<p><em>圖：水位面與河床地形之隱式重建示意</em></p>
+</div>
+
+---
+
+<h2>🚀 未來應用方向</h2>
+
+<div class="highlight">
+
+- Smart City Flood Prediction  
+- Real-time Hydraulic Digital Twin  
+- AI-based Hydrological Field Reconstruction  
+- Coupling CFD + Implicit Geometry  
+- GPU-based large-scale terrain simulation  
+
+</div>
+
+---
+
+<div class="footer-nav">
+
+<a href="index.html">🏠 Home</a> |
+<a href="slope_stability_app.html">⛰️ Slope Stability</a> |
+<a href="about_me.html">👤 Author</a> |
+<a href="extended_abstract.html">📄 Abstract</a>
+
+</div>
+
+</div>
+
+</body>
+</html>

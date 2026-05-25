@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>邊坡穩定 · 土壤與岩石力學｜Marching Cubes 應用</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', system-ui; background: #f4efe7; padding: 2rem; }
+        .container { max-width: 1000px; margin: 0 auto; background: white; border-radius: 2rem; padding: 2rem; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        h1 { color: #9c6e3e; border-left: 5px solid #9c6e3e; padding-left: 1rem; margin-bottom: 1rem; }
+        .svg-box { background: #fef9e6; border-radius: 1rem; padding: 1rem; margin: 1.5rem 0; text-align: center; }
+        .note { background: #f3e5ab; padding: 1rem; border-radius: 1rem; margin: 1rem 0; }
+        .footer-nav { margin-top: 2rem; text-align: center; padding-top: 1rem; border-top: 1px solid #ccc; }
+        a { color: #9c6e3e; text-decoration: none; margin: 0 0.5rem; }
+        img { max-width: 100%; height: auto; border-radius: 0.8rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>⛰️ 邊坡穩定分析：土壤層、岩石邊坡與潛在滑動面</h1>
+    <p>透過隱式曲面重建技術，自動從地質鑽孔資料或數值模型提取 <strong>滑動面</strong> 與 <strong>地層界面</strong>，結合極限平衡法（Bishop, Janbu）計算安全係數。</p>
+    
+    <div class="svg-box">
+        <img src="images/slope_surface.png" alt="邊坡穩定示意圖：潛在滑動面與地層界面">
+        <p><em>圖2：根據強度參數 (c, φ) 定義隱式函數，自動搜尋臨界滑動面，無需預先設定滑動形狀。</em></p>
+    </div>
+
+    <div class="note">
+        <strong>📌 技術整合</strong><br>
+        - 將莫爾-庫倫破壞準則編碼為隱式函數 \( f(x,y,z) = \tau - (c + \sigma \tan\phi) \) <br>
+        - 利用無查表 Marching Cubes 提取破壞包絡面 → 即潛在滑動體積。<br>
+        - 可應用於順向坡、落石區、開挖工程穩定性監測。
+    </div>
+
+    <h2>🧪 案例模擬：砂頁岩互層邊坡</h2>
+    <p>輸入地層分界點與岩層位態，產生三維隱式曲面，再以程式計算不同水位下之安全係數變化。本方法已初步整合至 Python 原型，並輸出可視化網格。</p>
+    <div class="svg-box">
+        <img src="images/slope_surface.png" alt="滑動面候選網格" style="max-width:300px;">
+        <p><em>滑動面候選網格 (等值面)</em></p>
+    </div>
+    <div class="footer-nav">
+        <a href="index.html">🏠 回首頁</a> | 
+        <a href="hydrology_app.html">💧 水利應用</a> | 
+        <a href="about_me.html">👤 作者</a> |
+        <a href="extended_abstract.html">📄 擴展摘要</a>
+    </div>
+</div>
+</body>
+</html>

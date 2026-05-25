@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MCA_WLTNT · PDF Research Viewer</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #0f172a;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+.container {
+    background: white;
+    border-radius: 2rem;
+    max-width: 1200px;
+    width: 100%;
+    overflow: hidden;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+}
+
+.header {
+    background: linear-gradient(135deg, #1e3a8a, #0ea5e9);
+    color: white;
+    text-align: center;
+    padding: 1.2rem 2rem;
+}
+
+.header h1 {
+    font-size: 1.6rem;
+}
+
+.header p {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    margin-top: 0.3rem;
+}
+
+.viewer {
+    background: #f1f5f9;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 75vh;
+}
+
+iframe {
+    width: 100%;
+    height: 75vh;
+    border: none;
+    border-radius: 1rem;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.controls {
+    background: #e2e8f0;
+    text-align: center;
+    padding: 1rem;
+}
+
+.controls a {
+    display: inline-block;
+    margin: 0.4rem;
+    padding: 0.5rem 1.2rem;
+    background: #0ea5e9;
+    color: white;
+    border-radius: 2rem;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.controls a:hover {
+    background: #0369a1;
+}
+
+.footer {
+    background: #f8fafc;
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.85rem;
+    border-top: 1px solid #e2e8f0;
+}
+
+.footer a {
+    color: #0ea5e9;
+    text-decoration: none;
+    margin: 0 0.4rem;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+.note {
+    font-size: 0.8rem;
+    color: #475569;
+    margin-top: 0.5rem;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+    <h1>📄 MCA_WLTNT Research PDF Viewer</h1>
+    <p>Lookup-table-free · Triangle-free · Implicit Geometry Reconstruction</p>
+</div>
+
+<div class="viewer">
+
+    <!-- Replace with your actual PDF -->
+    <iframe src="MCA_WLTNT.pdf">
+        Your browser does not support embedded PDFs.
+        Download below.
+    </iframe>
+
+</div>
+
+<div class="controls">
+
+    <a href="marching_cubes_paper.pdf" download>⬇ Download PDF</a>
+    <a href="image_viewer.html">🖼 Image Viewer</a>
+    <a href="extended_abstract.html">📄 Abstract</a>
+    <a href="about_me.html">👤 Author</a>
+
+    <div class="note">
+        If PDF does not load, please open in a new tab or download directly.
+    </div>
+
+</div>
+
+<div class="footer">
+
+    <a href="index.html">🏠 Home</a> |
+    <a href="hydrology_app.html">💧 Hydrology</a> |
+    <a href="slope_stability_app.html">⛰ Slope Stability</a> |
+    <a href="extended_abstract.html">📄 Research Abstract</a>
+
+</div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>水資源應用 · 水利與水理｜Marching Cubes 無查表法</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', system-ui; background: #e9f2f5; padding: 2rem; }
+        .container { max-width: 1000px; margin: 0 auto; background: white; border-radius: 2rem; padding: 2rem; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        h1 { color: #0077b6; border-left: 5px solid #0077b6; padding-left: 1rem; margin-bottom: 1rem; }
+        .svg-box { background: #f8f9fa; border-radius: 1rem; padding: 1rem; margin: 1.5rem 0; text-align: center; }
+        .highlight { background: #caf0f8; padding: 1rem; border-radius: 1rem; margin: 1rem 0; }
+        .footer-nav { margin-top: 2rem; text-align: center; padding-top: 1rem; border-top: 1px solid #ccc; }
+        a { color: #0077b6; text-decoration: none; margin: 0 0.5rem; }
+        img { max-width: 100%; height: auto; border-radius: 0.8rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>💧 水資源領域應用：水利工程 + 水理模擬</h1>
+    <p>本專案將「無查表 Marching Cubes」應用於水資源相關之隱式曲面重建，包含河床地形、地下水位面、自由水面線等。</p>
+    
+    <div class="svg-box">
+        <img src="images/water_flow.png" alt="水利示意圖：河床斷面與地下水位面">
+        <p><em>圖1：利用隱式曲面擬合河床地形與地下水位面，可輸入水文參數進行水理計算。</em></p>
+    </div>
+
+    <div class="highlight">
+        <strong>🔧 實際應用情境</strong><br>
+        - 洪水氾濫模擬：從 LiDAR 點雲建構 TIN，再以 Marching Cubes 提取水面曲面。<br>
+        - 水庫淤泥體積計算：將水下地形視為隱式函數，精確計算淤積量。<br>
+        - 地下水補注區分析：追蹤等勢面，結合達西定律視覺化流場。
+    </div>
+
+    <h2>📐 水理方程式結合</h2>
+    <p>將水深、流速等物理量編碼為隱式函數 <em>f(x,y,z) = h(x,y) - z</em>，可提取自由水面。配合無查表演算法，不需預先定義複雜水面拓撲，動態更新邊界條件。</p>
+    <div class="svg-box">
+        <img src="images/water_flow.png" alt="等水位線示意圖" style="max-width:300px;">
+        <p><em>等水位線 (隱式提取)</em></p>
+    </div>
+
+    <div class="footer-nav">
+        <a href="index.html">🏠 回首頁</a> | 
+        <a href="slope_stability_app.html">⛰️ 邊坡穩定應用</a> | 
+        <a href="about_me.html">👤 作者</a> |
+        <a href="extended_abstract.html">📄 擴展摘要</a>
+    </div>
+</div>
+</body>
+</html>

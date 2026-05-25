@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Extended Abstract: MCA_WLTNT</title>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background-color: #faf9f8;
+    color: #1e2a3a;
+    line-height: 1.6;
+    padding: 2rem 1rem;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: white;
+    padding: 2rem 2.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+h1 {
+    font-size: 1.8rem;
+    border-left: 5px solid #2c7da0;
+    padding-left: 1rem;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: #2c7da0;
+    margin-bottom: 2rem;
+    font-style: italic;
+}
+
+h2 {
+    font-size: 1.4rem;
+    margin-top: 1.5rem;
+    border-bottom: 1px solid #cbd5e1;
+}
+
+p { margin: 1rem 0; text-align: justify; }
+
+ul { margin-left: 1.5rem; }
+
+.equation {
+    text-align: center;
+    margin: 1rem 0;
+}
+
+.note {
+    background: #eef2ff;
+    padding: 1rem;
+    border-radius: 0.8rem;
+    margin-top: 1rem;
+}
+
+.footer {
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 0.85rem;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>MCA_WLTNT: Lookup-Table-Free and Triangle-Free Marching Cubes</h1>
+
+<div class="subtitle">
+From Marching Squares to Point-Based Implicit Surface Reconstruction
+</div>
+
+---
+
+<h2>1. Introduction</h2>
+
+<p>
+Classical Marching Cubes algorithms rely on predefined lookup tables and triangle-based mesh construction.
+While effective, this introduces discrete topological dependency and computational overhead.
+</p>
+
+<p>
+We propose <strong>MCA_WLTNT</strong>, a geometry-first formulation that eliminates both:
+</p>
+
+<ul>
+<li>Lookup tables</li>
+<li>Triangle mesh construction</li>
+</ul>
+
+<p>
+Instead, the method directly reconstructs implicit surfaces using point-based geometric sampling.
+</p>
+
+---
+
+<h2>2. Implicit Surface Formulation</h2>
+
+<p>The surface is defined as:</p>
+
+<div class="equation">
+\[
+f(x,y,z)=0
+\]
+</div>
+
+<p>Each voxel contains 8 vertices and 12 edges. A surface crossing is detected by sign changes:</p>
+
+<div class="equation">
+\[
+f(P_1)\cdot f(P_2) < 0
+\]
+</div>
+
+---
+
+<h2>3. Geometric Intersection</h2>
+
+<p>The intersection point is computed by linear interpolation:</p>
+
+<div class="equation">
+\[
+P = P_1 + t(P_2 - P_1), \quad
+t = \frac{|f(P_1)|}{|f(P_1)| + |f(P_2)|}
+\]
+</div>
+
+<p>
+This produces iso-points satisfying \( f(P) \approx 0 \).
+</p>
+
+---
+
+<h2>4. Core Idea: Point-Based Surface Representation</h2>
+
+<p>
+Unlike classical Marching Cubes, MCA_WLTNT does NOT construct triangles.
+</p>
+
+<p><strong>Traditional pipeline:</strong></p>
+
+<pre>
+Edge intersections → Lookup table → Triangles → Mesh
+</pre>
+
+<p><strong>MCA_WLTNT pipeline:</strong></p>
+
+<pre>
+Edge intersections → Iso-points → Dense point cloud → Surface approximation
+</pre>
+
+<p>
+Thus, the surface is represented as a <strong>continuous dense point set</strong>.
+</p>
+
+---
+
+<h2>5. Key Contribution</h2>
+
+<ul>
+<li>Eliminates lookup tables entirely</li>
+<li>Removes triangle mesh construction</li>
+<li>Reformulates MCA as a geometric sampling problem</li>
+<li>Enables GPU-friendly voxel-parallel computation</li>
+<li>Provides direct point-cloud surface reconstruction</li>
+</ul>
+
+---
+
+<h2>6. From 2D to 3D Generalization</h2>
+
+<p>
+2D Marching Squares → contour lines  
+3D MCA_WLTNT → point-based isosurfaces
+</p>
+
+<p>
+This framework naturally extends to higher-dimensional implicit geometry.
+</p>
+
+---
+
+<h2>7. Applications</h2>
+
+<ul>
+<li>CT / MRI medical reconstruction</li>
+<li>Computational Fluid Dynamics (CFD)</li>
+<li>Hydrology & flood simulation</li>
+<li>Slope stability analysis</li>
+<li>Digital Twin systems</li>
+<li>AI implicit geometry (NeRF / SDF / DeepSDF)</li>
+</ul>
+
+---
+
+<h2>8. Hydrology & Geotechnical Extensions</h2>
+
+<p>
+In hydrology, water surfaces can be defined as:
+</p>
+
+<div class="equation">
+\[
+f(x,y,z) = h(x,y) - z
+\]
+</div>
+
+<p>
+In slope stability, failure surfaces may be represented implicitly using stress-based fields:
+</p>
+
+<p>
+MCA_WLTNT extracts these surfaces directly as iso-point clouds for engineering analysis.
+</p>
+
+---
+
+<h2>9. Implementation Summary</h2>
+
+<ul>
+<li>Voxel-based traversal</li>
+<li>Edge sign detection</li>
+<li>Linear interpolation</li>
+<li>Point cloud accumulation</li>
+<li>GPU-parallel execution friendly</li>
+</ul>
+
+---
+
+<h2>10. Conclusion</h2>
+
+<p>
+MCA_WLTNT reformulates Marching Cubes into a pure geometric sampling framework.
+By removing both lookup tables and triangle construction, the method provides a simpler, more scalable representation of implicit surfaces.
+</p>
+
+<p>
+When voxel resolution increases:
+</p>
+
+<div class="equation">
+\[
+\text{Point Cloud} \rightarrow \text{Continuous Surface}
+\]
+</div>
+
+---
+
+<div class="note">
+<strong>Keywords:</strong> Implicit Geometry, Marching Cubes, Point Cloud, Lookup Table Free, Triangle-Free, Voxel Sampling, GPU Geometry, CT Reconstruction, Digital Twin
+</div>
+
+---
+
+<div class="footer">
+MCA_WLTNT · Implicit Geometry · GPU Point-Based Reconstruction · Stay curious
+</div>
+
+</div>
+
+</body>
+</html>
